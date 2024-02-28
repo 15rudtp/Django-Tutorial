@@ -5,8 +5,14 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
+        {% else %}
+            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
+        <form method="POST" action="{% url 'post_delete' pk=post.pk %}">{% csrf_token %}
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span></button>
+        </form>
     </div>
 {% endblock %}

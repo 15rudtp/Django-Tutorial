@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'corsheaders' ,#동일출처정책을 위함
+    'blog', #이건 블로그 파일 사용키 위함
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # 동일출처정책을 위함
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +51,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True #모든 출처 허용
+
+"""
+특정 출처만 허용
+"""
+# CORS_ALLOW_ALL_ORIGINS = [
+#     'http://localhost:3000'
+# ]
+
 
 ROOT_URLCONF = 'mysite.urls'
 
